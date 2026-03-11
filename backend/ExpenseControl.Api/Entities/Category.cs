@@ -13,8 +13,14 @@ public class Category
     }
 
     public int Id { get; private set; }
-    public string Description { get; set; } = null!;
-    public CategoryPurpose Purpose { get; set; }
+    public string Description { get; private set; } = null!;
+    public CategoryPurpose Purpose { get; private set; }
 
     public List<Transaction> Transactions { get; set; } = [];
+
+    public void Update(string description, CategoryPurpose purpose)
+    {
+        Description = description;
+        Purpose = purpose;
+    }
 }

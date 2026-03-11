@@ -4,15 +4,21 @@ public class Person
 {
     protected Person() { } // EF
 
-    public Person(string fullName, int idade)
+    public Person(string fullName, int age)
     {
         FullName = fullName;
-        Idade = idade;
+        Age = age;
     }
 
     public int Id { get; private set; }
     public string FullName { get; set; } = null!;
-    public int Idade { get; set; }
+    public int Age { get; set; }
 
     public List<Transaction> Transactions { get; set; } = [];
+
+    public void Update(string fullName, int age)
+    {
+        FullName = fullName;
+        Age = age;
+    }
 }
