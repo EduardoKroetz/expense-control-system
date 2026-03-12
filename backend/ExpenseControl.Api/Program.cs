@@ -2,10 +2,14 @@ using ExpenseControl.Api.DataContext;
 using ExpenseControl.Api.Middlewares;
 using ExpenseControl.Api.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(o => o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.Services.AddDbContext<ExpenseControlDbContext>(opt =>
 {
@@ -14,6 +18,7 @@ builder.Services.AddDbContext<ExpenseControlDbContext>(opt =>
 
 builder.Services.AddScoped<PersonService>();
 builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<TransactionService>();
 
 var app = builder.Build();
 

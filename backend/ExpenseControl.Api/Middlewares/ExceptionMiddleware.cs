@@ -1,4 +1,5 @@
 ﻿using ExpenseControl.Api.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseControl.Api.Middlewares;
 
@@ -19,18 +20,35 @@ public class ExceptionMiddleware
         }
         catch (NotFoundException ex)
         {
-            context.Response.StatusCode = 404;
-            await context.Response.WriteAsJsonAsync(new { message = ex.Message });
+            await WriteProblem(context, 400, "Not found error", ex.Message);
+        }
+        catch (DomainException ex)
+        {
+            await WriteProblem(context, 400, "Domain error", ex.Message);
         }
         catch (BusinessException ex)
         {
-            context.Response.StatusCode = 400;
-            await context.Response.WriteAsJsonAsync(new { message = ex.Message });
+            await WriteProblem(context, 400, "Business error", ex.Message);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            context.Response.StatusCode = 500;
-            await context.Response.WriteAsJsonAsync(new { message = "Erro interno do servidor." });
+            await WriteProblem(context, 500, "Unexpected error", "Erro interno.");
         }
+    }
+
+    private static async Task WriteProblem(HttpContext context, int status, string title, string detail)
+    {
+        var problem = new ProblemDetails
+        {
+            Status = status,
+            Title = title,
+            Detail = detail,
+            Instance = context.Request.Path
+        };
+
+        context.Response.StatusCode = status;
+        context.Response.ContentType = "application/problem+json";
+
+        await context.Response.WriteAsJsonAsync(problem);
     }
 }

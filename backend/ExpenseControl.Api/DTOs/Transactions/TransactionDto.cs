@@ -8,7 +8,7 @@ public class TransactionDto
     public string Type { get; set; } = null!;
 
     public int PersonId { get; set; }
-    public string PersonName { get; set; } = null!;
+    public string PersonFullName { get; set; } = null!;
 
     public int CategoryId { get; set; }
     public string CategoryDescription { get; set; } = null!;

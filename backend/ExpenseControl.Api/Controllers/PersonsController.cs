@@ -52,6 +52,6 @@ public class PersonsController : ControllerBase
     {
         await _personService.DeleteAsync(id);
 
-        return Ok();
+        return NoContent();
     }
 }

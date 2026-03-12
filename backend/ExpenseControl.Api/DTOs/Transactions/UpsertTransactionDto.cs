@@ -12,7 +12,6 @@ public class UpsertTransactionDto
     [Range(0.01, double.MaxValue, ErrorMessage = "O valor da transação deve ser maior que zero.")]
     public decimal Value { get; set; }
 
-    [EnumDataType(typeof(TransactionType), ErrorMessage = "O tipo da transação deve ser Despesa ou Receita.")]
     public TransactionType Type { get; set; }
 
     [Range(1, int.MaxValue, ErrorMessage = "Uma categoria válida deve ser informada.")]

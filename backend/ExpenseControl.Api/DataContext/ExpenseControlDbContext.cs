@@ -6,7 +6,7 @@ namespace ExpenseControl.Api.DataContext;
 public class ExpenseControlDbContext : DbContext
 {
     public ExpenseControlDbContext(DbContextOptions opt) : base(opt)
-    {        
+    {
     }
 
     public DbSet<Person> Persons { get; set; }
