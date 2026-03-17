@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Persons from './pages/persons/Persons'
 import Categories from './pages/categories/Categories'
@@ -17,6 +17,8 @@ function App() {
      
          <div className='p-6 container mx-auto'>
             <Routes>
+               <Route path="/" element={<Navigate to="/persons" replace />} />
+
                <Route path="/persons" element={<Persons />} />
                <Route path="/categories" element={<Categories />} />
                <Route path="/transactions" element={<Transactions />} />
