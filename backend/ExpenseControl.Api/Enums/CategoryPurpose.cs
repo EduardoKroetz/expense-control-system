@@ -3,6 +3,6 @@
 public enum CategoryPurpose
 {
     Expense = 1,
-    Revenue = 2,
-    Both = 3
+    Income = 2,
+    Both = 3  
 }

@@ -19,6 +19,14 @@ builder.Services.AddDbContext<ExpenseControlDbContext>(opt =>
 builder.Services.AddScoped<PersonService>();
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<TransactionService>();
+builder.Services.AddScoped<ReportService>();
+
+builder.Services.AddCors(opt => opt.AddDefaultPolicy(policy =>
+{
+    policy.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
@@ -28,6 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 

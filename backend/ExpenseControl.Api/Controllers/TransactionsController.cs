@@ -16,7 +16,7 @@ public class TransactionsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAsync()
+    public async Task<IActionResult> GetListAsync()
     {
         var response = await _transactionService.GetListAsync();
 

@@ -58,7 +58,7 @@ public class Transaction
         // A categoria deve ser a mesma do tipo de transação ou ser do tipo "Ambas"
         var isCategoryPurposeValid = Category.Purpose == CategoryPurpose.Both ||
                                     ( Category.Purpose == CategoryPurpose.Expense && Type == TransactionType.Expense ) ||
-                                    ( Category.Purpose == CategoryPurpose.Revenue && Type == TransactionType.Revenue );
+                                    ( Category.Purpose == CategoryPurpose.Income && Type == TransactionType.Income );
 
         if (!isCategoryPurposeValid)
             throw new DomainException("A categoria informada não é compatível com o tipo de transação.");
