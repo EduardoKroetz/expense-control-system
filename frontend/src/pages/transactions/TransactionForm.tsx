@@ -68,7 +68,8 @@ export default function TransactionForm({ transaction, onSuccess }: TransactionF
       (c.purpose == "Income" && type == "Income")
     ))
 
-    setCategoryId("");
+    if (newTransaction)
+      setCategoryId("");
   }, [type, allCategories])
 
   function handleChangeValue(e: React.ChangeEvent<HTMLInputElement>) {
